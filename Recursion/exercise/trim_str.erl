@@ -6,14 +6,11 @@ reverse(L) -> reverse(L,[]).
 reverse([],F) -> F;
 reverse([X|Y],F) -> reverse(Y, [X|F]).
 
-dropwhile(Pred, List) -> 
-    case List of
-    []->[];
-    [X|Y] -> 
-        case Pred(X) of 
-            true -> dropwhile(Pred, Y);
-            false-> List
-    end
+dropwhile(_, []) -> []; 
+dropwhile(Pred, [X|Y]) -> 
+    case Pred(X) of 
+        true -> dropwhile(Pred, Y);
+        false-> [X|Y]
 end.
 
 trim(Str) -> 
