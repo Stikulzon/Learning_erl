@@ -11,5 +11,5 @@ custom_get_value(Key, [_|Tail]) -> custom_get_value(Key, Tail).
 % https://www.erldocs.com/19.0/stdlib/proplists.html?i=4&search=proplists:#get_all_values/2
 custom_get_all_values(Key, List) -> custom_get_all_values(Key, List, []).
 custom_get_all_values(_, [], Acc) -> Acc;
-custom_get_all_values(Key, [{Key, X}|Tail], Acc) -> custom_get_all_values(Key, Tail, [Acc|X]);
-custom_get_all_values(_, [_], Acc) -> Acc.
+custom_get_all_values(Key, [{Key, X}|Tail], Acc) -> custom_get_all_values(Key, Tail, [X|Acc]);
+custom_get_all_values(Key, [_|Tail], Acc) -> custom_get_all_values(Key, Tail, Acc).
