@@ -14,15 +14,19 @@ init() ->
 
 
 create_short(LongLink, State) ->
-    {L, S} = init(),
+    {L, S} = State,
     case maps:find(LongLink, L) of
-        {ok, Short_link} -> State, Short_link;
-        error -> Str = rand_str(10),
-                "http://hexlet.io/" ++ Str.
+        {ok, Short_link} -> {Short_link, State};
+        error -> SL = "http://hexlet.io/" ++ rand_str(10),
+        {SL, {L#{LongLink => SL}, S#{SL =>LongLink}}}
     end.
 
 get_long(ShortLink, State) ->
-    {error, not_found}.
+    {_, S} = State,
+    case maps:find(ShortLink, S) of
+        {ok, LongLink} -> {ok, LongLink};
+        error -> {error, not_found}
+    end.
 
 
 %% generates random string of chars [a-zA-Z0-9]
