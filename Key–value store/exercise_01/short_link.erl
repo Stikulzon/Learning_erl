@@ -1,4 +1,3 @@
-%% Поки безуспішно, розберуся вже завтра
 -module(short_link).
 
 -export([init/0, create_short/2, get_long/2, rand_str/1]).
