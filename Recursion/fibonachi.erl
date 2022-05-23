@@ -2,12 +2,15 @@
 
 -export([fib/1, start_test1/2]).
 
-fib(N) when N=<2 -> N;
-fib(N) -> fib(N-2, 1, 1).
+fib(N) when N=<2 andalso N>=-2 -> N;
+fib(N) when N>0 -> fib(N-2, 1, 1);
+fib(N) when N<0 -> fib_minus(N+2, -1, -1).
 
 fib(0, _, Acc2) -> Acc2;
 fib(N1, Acc1, Acc2) -> fib(N1 - 1, Acc2, Acc1+Acc2).
 
+fib_minus(0, _, Acc2) -> Acc2;
+fib_minus(N1, Acc1, Acc2) -> fib_minus(N1 + 1, Acc2, Acc1+Acc2).
 
 start_test1(N, CallsNum) -> 
     T1 = erlang:system_time(millisecond), 
