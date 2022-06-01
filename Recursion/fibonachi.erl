@@ -9,6 +9,7 @@ fib(N) when N<0 -> fib_minus(N+2, -1, -1).
 fib(0, _, Acc2) -> Acc2;
 fib(N1, Acc1, Acc2) -> fib(N1 - 1, Acc2, Acc1+Acc2).
 
+fib2(N) -> [N || N <- "this \"is {some} \\test [string]", N =:= "["].
 fib_minus(0, _, Acc2) -> Acc2;
 fib_minus(N1, Acc1, Acc2) -> fib_minus(N1 + 1, Acc2, Acc1+Acc2).
 
