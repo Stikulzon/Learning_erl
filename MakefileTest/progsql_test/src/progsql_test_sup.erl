@@ -14,7 +14,7 @@ init([]) ->
 		period => 1000},
 
 	ChildSpecifications =
-		[#{id => counter_server,
+		[#{id => progsql_test_worker,
 			start => {progsql_test_worker, start_link, []},
 			restart => permanent,
 			shutdown => 1000,
